@@ -7,11 +7,11 @@ export default function Home({navigation}) {
     return (
         <View style={styles.homeContainer}>
             <StatusBar style="auto"/>
-            <Text>Logged in successfully!</Text>
+            <Text style={styles.logInText}>Logged in successfully!</Text>
             <TouchableOpacity
                 style={styles.loginButton}
                 onPress={() => navigation.navigate('Login')}>
-                <Text>Log out</Text>
+                <Text style={styles.loginButtonText}>Log out</Text>
             </TouchableOpacity>
         </View>
     );

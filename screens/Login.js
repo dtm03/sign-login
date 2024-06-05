@@ -9,6 +9,7 @@ import {
     View
 } from "react-native";
 import styles from "../styles/style";
+import {LockClosedIcon, UserIcon} from "react-native-heroicons/outline";
 
 export default function LoginScreen({navigation}) {
     const onLoginPress = () => {
@@ -17,38 +18,40 @@ export default function LoginScreen({navigation}) {
     };
 
     return (
-        <KeyboardAvoidingView style={styles.containerView} behavior="padding">
+        <KeyboardAvoidingView style={styles.containerView}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.loginScreenContainer}>
-                    <View style={styles.loginFormView}>
+                    <View style={styles.loginContainer}>
                         <Text style={styles.logoText}>Quoted</Text>
-                        <TextInput
-                            placeholder="Username"
-                            placeholderTextColor="#c4c3cb"
-                            style={styles.loginFormTextInput}
-                        />
-                        <TextInput
-                            placeholder="Password"
-                            placeholderTextColor="#c4c3cb"
-                            style={styles.loginFormTextInput}
-                            secureTextEntry={true}
-                        />
+                        <View style={styles.propertyContainer}>
+                            <UserIcon style={styles.icon}/>
+                            <TextInput
+                                placeholder="Username"
+                                placeholderTextColor="#c4c3cb"
+                                secureTextEntry={true}
+                            />
+                        </View>
+                        <View style={styles.propertyContainer}>
+                            <LockClosedIcon style={styles.icon}/>
+                            <TextInput
+                                placeholder="Password"
+                                placeholderTextColor="#c4c3cb"
+                                secureTextEntry={true}
+                            />
+                        </View>
                         <TouchableOpacity
                             style={styles.loginButton}
                             onPress={() => onLoginPress()}
                             title="Login"
                         >
-                            <Text style={styles.LoginButtonText}>Log in</Text>
+                            <Text style={styles.loginButtonText}>Log in</Text>
                         </TouchableOpacity>
-                        <View style={styles.LogInContainer}>
-                            <Text style={styles.LogInText}>Don't have an account yet?
-                                <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                                    <Text style={styles.LogInLink}>Sign up</Text>
-                                </TouchableOpacity>
-                            </Text>
+                        <View style={styles.logInContainer}>
+                            <Text style={styles.logInText}>Don't have an account yet? </Text>
+                            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                                <Text style={[styles.logInLink, {textDecorationLine: 'underline'}]}>Sign up</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
-                </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     );

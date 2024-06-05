@@ -5,10 +5,8 @@ const { StyleSheet } = React;
 const styles = StyleSheet.create({
   containerView: {
     flex: 1,
-    alignItems: "center"
-  },
-  loginScreenContainer: {
-    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
   logoText: {
     fontSize: 40,
@@ -16,20 +14,10 @@ const styles = StyleSheet.create({
     marginTop: 150,
     marginBottom: 30,
     textAlign: "center",
+    color: "#c4c3cb",
   },
-  loginFormView: {
+  loginContainer: {
     flex: 1,
-  },
-  loginFormTextInput: {
-    height: 50,
-    fontSize: 14,
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: "#eaeaea",
-    backgroundColor: "#fafafa",
-    paddingLeft: 16,
-    marginTop: 5,
-    marginBottom: 5,
   },
   loginButton: {
     backgroundColor: "#3897f1",
@@ -46,22 +34,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  LogInContainer: {
+  logInContainer: {
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
     margin: 10,
   },
-  LogInText: {
+  logInText: {
     fontSize: 16,
+    color: "#c4c3cb",
   },
-  LogInLink: {
+  logInLink: {
     color: "#3897f1",
     fontSize: 16,
   },
-  LoginButtonText: {
+  loginButtonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-  }
+  },
+  propertyContainer: {
+    height: 50,
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: "#c4c3cb",
+    backgroundColor: "#fafafa",
+    paddingLeft: 14,
+    marginTop: 5,
+    marginBottom: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    marginRight: 10,
+    color: "#c4c3cb",
+  },
 });
 export default styles;
