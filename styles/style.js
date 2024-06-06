@@ -5,8 +5,6 @@ const { StyleSheet } = React;
 const styles = StyleSheet.create({
   containerView: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "#fff",
   },
   logoText: {
     fontSize: 40,
@@ -18,27 +16,27 @@ const styles = StyleSheet.create({
   },
   loginContainer: {
     flex: 1,
+    paddingHorizontal: 10,
   },
   loginButton: {
     backgroundColor: "#3897f1",
     borderRadius: 25,
     height: 50,
-    marginTop: 10,
-    width: 350,
+    marginTop: 20,
     alignItems: "center",
     justifyContent: "center"
   },
   homeContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logInContainer: {
+  logInLinkContainer: {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    margin: 10,
+    marginTop: 10,
   },
   logInText: {
     fontSize: 16,
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#c4c3cb",
     backgroundColor: "#fafafa",
-    paddingLeft: 14,
+    paddingHorizontal: 14,
     marginTop: 5,
     marginBottom: 5,
     flexDirection: 'row',
@@ -69,5 +67,16 @@ const styles = StyleSheet.create({
     marginRight: 10,
     color: "#c4c3cb",
   },
+  eyeIcon: {
+    color: "#c4c3cb",
+  },
+  input: {
+    flex: 1,
+  },
+  alertText: {
+    color: 'red',
+    fontSize: 12,
+    paddingLeft: 25,
+  }
 });
 export default styles;

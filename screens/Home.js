@@ -9,7 +9,6 @@ export default function Home({navigation}) {
             <StatusBar style="auto"/>
             <Text style={styles.logInText}>Logged in successfully!</Text>
             <TouchableOpacity
-                style={styles.loginButton}
                 onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.loginButtonText}>Log out</Text>
             </TouchableOpacity>
