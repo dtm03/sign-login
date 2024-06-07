@@ -1,6 +1,6 @@
 import React, {useState, useRef} from "react";
 import {
-    Alert, Keyboard, KeyboardAvoidingView, StatusBar, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View
+    Keyboard, KeyboardAvoidingView, StatusBar, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View
 } from "react-native";
 import {
     EnvelopeIcon, LockClosedIcon, UserIcon, EyeSlashIcon, EyeIcon
@@ -23,38 +23,51 @@ export default function LoginScreen({navigation}) {
     const passwordRef = useRef(null);
 
     const onSignupPress = () => {
-        console.log("Login button pressed");
         if (validateEmail(email) && validateUsername(username) && validatePassword(password)) {
+            setEmail("");
+            setUsername("");
+            setPassword("");
             navigation.navigate('Home');
         }
     };
 
     function validateEmail(email) {
-        if (!validator.validate(email) && email.length > 0) {
+        if (email.length === 0) {
+            setEmailAlert("");
+            return false;
+        } else if (validator.validate(email)) {
+            setEmailAlert("");
+            return true;
+        } else {
             setEmailAlert("Please enter a valid email address");
             return false;
         }
-        setEmailAlert("");
-        return true;
     }
 
-
     function validateUsername(username) {
-        if (username.length < 5 && username.length > 0) {
-            setUsernameAlert("Username must be at least 5 characters long");
+        if (username.length === 0) {
+            setUsernameAlert("");
+            return false;
+        } else if (username.length >= 5) {
+            setUsernameAlert("");
+            return true;
+        } else {
+            setUsernameAlert("Username must be at least 5 characters");
             return false;
         }
-        setUsernameAlert("")
-        return true;
     }
 
     function validatePassword(password) {
-        if (zxcvbn(password).score < 3 && password.length > 0) {
+        if (password.length === 0) {
+            setPasswordAlert("");
+            return false;
+        } else if (zxcvbn(password).score >= 3) {
+            setPasswordAlert("");
+            return true;
+        } else {
             setPasswordAlert("Password is too weak");
             return false;
         }
-        setPasswordAlert("")
-        return true;
     }
 
     function focusPassword() {
@@ -76,7 +89,10 @@ export default function LoginScreen({navigation}) {
                             placeholder="E-Mail"
                             placeholderTextColor="#c4c3cb"
                             value={email}
-                            onChangeText={setEmail}
+                            onChangeText={(email) => {
+                                setEmail(email);
+                                validateEmail(email);
+                            }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             onBlur={() => validateEmail(email)}
@@ -93,10 +109,12 @@ export default function LoginScreen({navigation}) {
                             placeholder="Username"
                             placeholderTextColor="#c4c3cb"
                             value={username}
-                            onChangeText={setUsername}
+                            onChangeText={(username) => {
+                                setUsername(username);
+                                validateUsername(username);
+                            }}
                             autoCapitalize="none"
                             autoCorrect={false}
-                            onBlur={() => validateUsername(username)}
                             maxLength={15}
                         />
                     </View>
@@ -111,13 +129,16 @@ export default function LoginScreen({navigation}) {
                             placeholder="Password"
                             placeholderTextColor="#c4c3cb"
                             value={password}
-                            onChangeText={setPassword}
+                            onChangeText={(password) => {
+                                setPassword(password);
+                                validatePassword(password);
+                            }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             secureTextEntry={secureEntry}
-                            onBlur={() => validatePassword(password) && setShowEye(false)}
-                            maxLength={20}
+                            onBlur={() => setShowEye(false)}
                             onPressOut={() => setShowEye(true)}
+                            maxLength={20}
                         />
                         <TouchableOpacity onPress={() => setSecureEntry(!secureEntry)}>
                             {showEye && (secureEntry ? <EyeIcon style={styles.eyeIcon}/> :

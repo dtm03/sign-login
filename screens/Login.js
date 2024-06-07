@@ -14,33 +14,39 @@ import {EyeIcon, EyeSlashIcon, LockClosedIcon, UserIcon} from "react-native-hero
 export default function LoginScreen({navigation}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const usernameRef = useRef(null);
-    const passwordRef = useRef(null);
     const [usernameAlert, setUsernameAlert] = useState('');
     const [passwordAlert, setPasswordAlert] = useState('');
     const [showEye, setShowEye] = useState(false);
     const [secureEntry, setSecureEntry] = useState(true);
+    const usernameRef = useRef(null);
+    const passwordRef = useRef(null);
 
     const onLoginPress = () => {
-        console.log("Login button pressed");
-        navigation.navigate('Home');
+        if (validateUsername(username) && validatePassword(password)) {
+            setUsername("");
+            setPassword("");
+            navigation.navigate('Home');
+        }
     };
 
+    // Change function to check whether username exists
     function validateUsername(username) {
         if (true) {
             setUsernameAlert("");
             return true;
+        } else {
+            setUsernameAlert("There is no such username. Please create an account.");
+            return false;
         }
-        setUsernameAlert("There is no such username. Please create an account.");
-        return false;
     }
 
+    // Change function to check whether username matches password
     function validatePassword(password) {
         if (true) {
             setPasswordAlert("");
-            return true
+            return true;
         } else {
-            setPasswordAlert("Password does not match username");
+            setPasswordAlert("Password does not match given username");
             return false;
         }
     }
